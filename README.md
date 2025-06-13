@@ -18,5 +18,5 @@ This project offers a fun and addictive stacking game built entirely with **Java
 
 ## How to Access
 
-👉 [Click here to play](https://seu-link-aqui.com)  
-*(Replace the link above with the actual live project URL)*
+[Click here to play](https://gamaalice.github.io/towerblocks/)  
+
