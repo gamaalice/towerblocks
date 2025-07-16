@@ -1,16 +1,12 @@
 console.clear()
 
-// THREE.js should be included via CDN
-// Add this to your HTML if not already included:
-// <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-// <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
 
 class Stage {
   constructor() {
-    // container
+
     this.container = document.getElementById("game")
 
-    // renderer
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: false,
@@ -20,10 +16,10 @@ class Stage {
     this.renderer.setClearColor("#D0CBC7", 1)
     this.container.appendChild(this.renderer.domElement)
 
-    // scene
+
     this.scene = new THREE.Scene()
 
-    // camera
+   
     const aspect = window.innerWidth / window.innerHeight
     const d = 20
     this.camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, -100, 1000)
@@ -32,7 +28,7 @@ class Stage {
     this.camera.position.z = 2
     this.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
-    //light
+
     this.light = new THREE.DirectionalLight(0xffffff, 0.5)
     this.light.position.set(0, 499, 0)
     this.scene.add(this.light)
@@ -74,21 +70,21 @@ class Stage {
 
 class Block {
   constructor(block) {
-    // Define constants that were previously class properties
+
     this.STATES = { ACTIVE: "active", STOPPED: "stopped", MISSED: "missed" }
     this.MOVE_AMOUNT = 12
 
     this.dimension = { width: 0, height: 0, depth: 0 }
     this.position = { x: 0, y: 0, z: 0 }
 
-    // set size and position
+
     this.targetBlock = block
 
     this.index = (this.targetBlock ? this.targetBlock.index : 0) + 1
     this.workingPlane = this.index % 2 ? "x" : "z"
     this.workingDimension = this.index % 2 ? "width" : "depth"
 
-    // set the dimensions from the target block, or defaults.
+
     this.dimension.width = this.targetBlock ? this.targetBlock.dimension.width : 10
     this.dimension.height = this.targetBlock ? this.targetBlock.dimension.height : 2
     this.dimension.depth = this.targetBlock ? this.targetBlock.dimension.depth : 10
@@ -99,7 +95,7 @@ class Block {
 
     this.colorOffset = this.targetBlock ? this.targetBlock.colorOffset : Math.round(Math.random() * 100)
 
-    // set color
+   
     if (!this.targetBlock) {
       this.color = 0x333344
     } else {
@@ -110,10 +106,9 @@ class Block {
       this.color = new THREE.Color(r / 255, g / 255, b / 255)
     }
 
-    // state
     this.state = this.index > 1 ? this.STATES.ACTIVE : this.STATES.STOPPED
 
-    // set direction
+  
     this.speed = -0.1 - this.index * 0.005
     if (this.speed < -4) this.speed = -4
     this.direction = this.speed
@@ -236,7 +231,7 @@ class Block {
 
 class Game {
   constructor() {
-    // Define constants that were previously class properties
+   
     this.STATES = {
       LOADING: "loading",
       PLAYING: "playing",

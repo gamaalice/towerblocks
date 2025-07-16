@@ -15,7 +15,7 @@ html, body {
   position: relative;
 }
 
-/* SCORE */
+
 #container #score {
   position: absolute;
   top: 20px;
@@ -62,7 +62,7 @@ html, body {
   font-size: 40px;
 }
 
-/* GAME READY SCREEN */
+
 #container .game-ready {
   position: absolute;
   top: 0;
@@ -86,7 +86,6 @@ html, body {
   font-size: 30px;
 }
 
-/* INSTRUCTIONS */
 #container #instructions {
   position: absolute;
   width: 100%;
@@ -101,7 +100,7 @@ html, body {
   opacity: 0 !important;
 }
 
-/* PLAYING STATE */
+
 #container.playing #score,
 #container.resetting #score {
   transform: translateY(0px) scale(1);
@@ -111,13 +110,12 @@ html, body {
   opacity: 1;
 }
 
-/* READY STATE */
+
 #container.ready .game-ready #start-button {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ENDED STATE */
 #container.ended #score {
   transform: translateY(6vh) scale(1.5);
 }
