@@ -7,6 +7,8 @@ html, body {
   width: 100%;
   position: relative;
   font-family: 'Comfortaa', cursive;
+  background-color: hsl(180, 60%, 95%); 
+  touch-action: manipulation; /* Previne o zoom e rolagem padrão em touch */
 }
 
 #container {
@@ -15,7 +17,6 @@ html, body {
   position: relative;
 }
 
-
 #container #score {
   position: absolute;
   top: 20px;
@@ -23,8 +24,9 @@ html, body {
   text-align: center;
   font-size: 10vh;
   transition: transform 0.5s ease;
-  color: #333344;
+  color: hsl(260, 70%, 40%); 
   transform: translateY(-200px) scale(1);
+  z-index: 10; 
 }
 
 /* GAME AREA */
@@ -47,13 +49,15 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 10; 
 }
 
 #container .game-over * {
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 0;
   transform: translateY(-50px);
-  color: #333344;
+  color: hsl(260, 70%, 40%);
+  text-align: center; 
 }
 
 #container .game-over h2 {
@@ -61,7 +65,6 @@ html, body {
   padding: 0;
   font-size: 40px;
 }
-
 
 #container .game-ready {
   position: absolute;
@@ -73,17 +76,22 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  z-index: 10; 
 }
 
 #container .game-ready #start-button {
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 0;
   transform: translateY(-50px);
-  border: 3px solid #333344;
+  border: 3px solid hsl(260, 70%, 40%); 
   padding: 10px 20px;
   background-color: transparent;
-  color: #333344;
+  color: hsl(260, 70%, 40%); 
   font-size: 30px;
+  cursor: pointer;
+  -webkit-user-select: none; 
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; /* Remove o destaque de toque em mobile */
 }
 
 #container #instructions {
@@ -94,12 +102,13 @@ html, body {
   text-align: center;
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 0;
+  color: hsl(260, 50%, 50%); 
+  z-index: 10; 
 }
 
 #container #instructions.hide {
   opacity: 0 !important;
 }
-
 
 #container.playing #score,
 #container.resetting #score {
@@ -109,7 +118,6 @@ html, body {
 #container.playing #instructions {
   opacity: 1;
 }
-
 
 #container.ready .game-ready #start-button {
   opacity: 1;
@@ -130,7 +138,7 @@ html, body {
 }
 
 #mobile-touch {
-  display: none;
+  display: none; /* Escondido por padrão, mostrado apenas em mobile */
 }
 
 @media (max-width: 600px) {
@@ -140,32 +148,35 @@ html, body {
     width: 100%;
     display: flex;
     justify-content: center;
+    z-index: 20; 
   }
-
   #touch-btn {
     font-size: 2rem;
     padding: 15px 30px;
     border: none;
-    background-color: #333344;
+    background-color: hsl(260, 70%, 40%); 
     color: white;
     border-radius: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
-}
 
-@media (max-width: 600px) {
+  /* Ajustes de fonte e espaçamento para mobile */
   #score {
     font-size: 5vh;
   }
-
   #instructions {
     top: 10vh;
     font-size: 1.2rem;
   }
-
   .game-over h2 {
     font-size: 2rem;
   }
-
+  .game-over p {
+    font-size: 1rem;
+  }
   #start-button {
     font-size: 1.5rem;
     padding: 8px 16px;
