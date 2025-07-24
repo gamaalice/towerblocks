@@ -15,8 +15,7 @@ I developed a 3D stacking game where the player must place moving blocks with pr
 - **Three.js** — 3D rendering with orthographic camera and toon materials  
 - **GSAP (TweenLite)** — smooth animations for blocks and camera  
 - **HTML + CSS** — layout and responsive design with mobile support  
-- **LocalStorage** — persistent high score tracking  
-- **HTML5 Audio** — sound feedback on tower collapse  
+- **LocalStorage** — persistent high score tracking    
 
 ## Features
 
