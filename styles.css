@@ -129,4 +129,45 @@ html, body {
   transition-delay: 0.3s;
 }
 
+#mobile-touch {
+  display: none;
+}
 
+@media (max-width: 600px) {
+  #mobile-touch {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #touch-btn {
+    font-size: 2rem;
+    padding: 15px 30px;
+    border: none;
+    background-color: #333344;
+    color: white;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  #score {
+    font-size: 5vh;
+  }
+
+  #instructions {
+    top: 10vh;
+    font-size: 1.2rem;
+  }
+
+  .game-over h2 {
+    font-size: 2rem;
+  }
+
+  #start-button {
+    font-size: 1.5rem;
+    padding: 8px 16px;
+  }
+}

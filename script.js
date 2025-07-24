@@ -408,3 +408,7 @@ class Game {
 }
 
 const game = new Game()
+
+document.getElementById("touch-btn").addEventListener("touchstart", () => {
+  game.onAction()
+})
