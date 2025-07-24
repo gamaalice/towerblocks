@@ -21,7 +21,6 @@ I developed a 3D stacking game where the player must place moving blocks with pr
 
 - Block stacking with overlap calculation  
 - Falling and rotation animations for sliced blocks  
-- Camera shake effect on game over  
 - Score system with persistent high score  
 - Sound feedback when the tower collapses  
 - Responsive interface with mobile touch support  
