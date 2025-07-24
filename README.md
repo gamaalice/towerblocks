@@ -1,22 +1,41 @@
-# Tower Blocks
 
-This project offers a fun and addictive stacking game built entirely with **JavaScript** and **Three.js**, delivering a visually smooth and engaging 3D experience.
+# Tower Blocks — 3D Stacking Game with JavaScript and Three.js
+
+## Problem
+
+I wanted to explore how to build a simple and addictive 3D game experience using only web technologies. The goal was to create a stacking mechanic with satisfying visual feedback, without relying on external engines like Unity or Unreal.
+
+## Solution
+
+I developed a 3D stacking game where the player must place moving blocks with precision. Each mistake is visually represented with smooth animations and effects, and the challenge is to reach the highest possible score before the tower collapses.
+
+## 🛠Technologies Used
+
+- **Vanilla JavaScript** — game logic and state management  
+- **Three.js** — 3D rendering with orthographic camera and toon materials  
+- **GSAP (TweenLite)** — smooth animations for blocks and camera  
+- **HTML + CSS** — layout and responsive design with mobile support  
+- **LocalStorage** — persistent high score tracking  
+- **HTML5 Audio** — sound feedback on tower collapse  
 
 ## Features
 
-- **3D Block Stacking Mechanics**  
-  Stack moving blocks on top of each other with precise timing to reach the highest score.
+- Block stacking with overlap calculation  
+- Falling and rotation animations for sliced blocks  
+- Camera shake effect on game over  
+- Score system with persistent high score  
+- Sound feedback when the tower collapses  
+- Responsive interface with mobile touch support  
 
-- **Animated Visual Feedback**  
-  Blocks that miss the stack fall with rotation and motion for satisfying feedback.
+## What I Learned
 
-- **Scoring System**  
-  Keep track of your height with a dynamic score counter.
+- Structuring a game using object-oriented JavaScript  
+- Handling 3D geometry and visual collisions with Three.js  
+- Enhancing user experience with visual and audio feedback  
+- Managing game states and data persistence with LocalStorage  
+- Adapting controls for both desktop and mobile environments  
 
-- **One-Click Restart**  
-  Quick reset when the tower collapses, encouraging replayability.
+## 🔗 How to Access
 
-## How to Access
-
-[Click here to play](https://gamaalice.github.io/towerblocks/)  
+[Click here to play](https://gamaalice.github.io/towerblocks/)
 
