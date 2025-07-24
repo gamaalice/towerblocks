@@ -1,9 +1,8 @@
 console.clear()
 
-// Import THREE and TweenLite
-const THREE = window.THREE;
-const TweenLite = window.TweenLite;
-const Power1 = window.Power1;
+const THREE = window.THREE
+const TweenLite = window.TweenLite
+const Power1 = window.Power1
 
 class Stage {
   constructor() {
@@ -13,10 +12,10 @@ class Stage {
       alpha: false,
     })
     this.renderer.setSize(window.innerWidth, window.innerHeight)
-    this.renderer.setClearColor("hsl(180, 60%, 95%)", 1) 
+    this.renderer.setClearColor("hsl(180, 60%, 95%)", 1)
     this.container.appendChild(this.renderer.domElement)
     this.scene = new THREE.Scene()
-    
+
     const aspect = window.innerWidth / window.innerHeight
     const d = 20
     this.camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, -100, 1000)
@@ -38,10 +37,9 @@ class Stage {
     TweenLite.to(this.camera.lookAt, speed, { y: y, ease: Power1.easeInOut })
   }
 
-  // Adiciona um efeito de "shake" na câmera
-  shakeCamera(duration = 0.2, intensity = 0.5) {
-    const originalY = this.camera.position.y;
-    const originalLookAtY = this.camera.lookAt.y;
+  shakeCamera(duration = 0.2, intensity = 1.5) {
+    const originalY = this.camera.position.y
+    const originalLookAtY = this.camera.lookAt.y
 
     TweenLite.to(this.camera.position, duration / 2, {
       y: originalY + intensity,
@@ -50,9 +48,9 @@ class Stage {
         TweenLite.to(this.camera.position, duration / 2, {
           y: originalY,
           ease: Power1.easeIn,
-        });
+        })
       },
-    });
+    })
     TweenLite.to(this.camera.lookAt, duration / 2, {
       y: originalLookAtY + intensity,
       ease: Power1.easeOut,
@@ -60,9 +58,9 @@ class Stage {
         TweenLite.to(this.camera.lookAt, duration / 2, {
           y: originalLookAtY,
           ease: Power1.easeIn,
-        });
+        })
       },
-    });
+    })
   }
 
   onResize() {
@@ -102,23 +100,22 @@ class Block {
     this.position.y = this.dimension.height * this.index
     this.position.z = this.targetBlock ? this.targetBlock.position.z : 0
     this.colorOffset = this.targetBlock ? this.targetBlock.colorOffset : Math.round(Math.random() * 100)
-    
+
+    this.color = new THREE.Color()
     if (!this.targetBlock) {
-      this.color = 0x6A0DAD 
+      this.color.setHex(0x6a0dad)
     } else {
       const offset = this.index + this.colorOffset
-      
-      var h = (offset * 137.508) % 360; // Usando o "golden angle" para distribuir as cores
-      var s = 70 + Math.sin(offset * 0.5) * 20; 
-      var l = 50 + Math.cos(offset * 0.3) * 10; 
-      this.color = new THREE.Color(`hsl(${h}, ${s}%, ${l}%)`);
+      const h = (offset * 137.508) % 360
+      const s = 0.7 + Math.random() * 0.3
+      const l = 0.5 + Math.random() * 0.2
+      this.color.setHSL(h / 360, s, l)
     }
     this.state = this.index > 1 ? this.STATES.ACTIVE : this.STATES.STOPPED
-    
+
     this.speed = -0.1 - this.index * 0.005
     if (this.speed < -4) this.speed = -4
     this.direction = this.speed
-    // create block
     const geometry = new THREE.BoxGeometry(this.dimension.width, this.dimension.height, this.dimension.depth)
     geometry.applyMatrix(
       new THREE.Matrix4().makeTranslation(
@@ -234,13 +231,12 @@ class Game {
     this.scoreContainer = document.getElementById("score")
     this.startButton = document.getElementById("start-button")
     this.instructions = document.getElementById("instructions")
-    this.finalScoreDisplay = document.getElementById("final-score") 
-    this.highScoreDisplay = document.getElementById("high-score")   
-    this.collapseSound = document.getElementById("collapse-sound")  
+    this.finalScoreDisplay = document.getElementById("final-score")
+    this.highScoreDisplay = document.getElementById("high-score")
 
     this.scoreContainer.innerHTML = "0"
-    this.highScore = parseInt(localStorage.getItem("highScore") || "0") // Carrega high score
-    this.highScoreDisplay.innerHTML = String(this.highScore) 
+    this.highScore = Number.parseInt(localStorage.getItem("highScore") || "0")
+    this.highScoreDisplay.innerHTML = String(this.highScore)
 
     this.newBlocks = new THREE.Group()
     this.placedBlocks = new THREE.Group()
@@ -251,33 +247,36 @@ class Game {
     this.addBlock()
     this.tick()
     this.updateState(this.STATES.READY)
-    
-   
+
     document.addEventListener("keydown", (e) => {
       if (e.keyCode == 32) this.onAction()
     })
 
-   
     document.addEventListener("click", (e) => {
-     
       if (window.innerWidth > 600 || e.target.id !== "touch-btn") {
         this.onAction()
       }
     })
 
-    // Listener de toque geral para mobile
-    document.addEventListener("touchstart", (e) => {
-      e.preventDefault() 
-      if (e.target.id !== "touch-btn") {
-        this.onAction()
-      }
-    }, { passive: false }) 
+    document.addEventListener(
+      "touchstart",
+      (e) => {
+        e.preventDefault()
+        if (e.target.id !== "touch-btn") {
+          this.onAction()
+        }
+      },
+      { passive: false },
+    )
 
-    
-    document.getElementById("touch-btn").addEventListener("touchstart", (e) => {
-      e.preventDefault() // Previne o comportamento padrão de rolagem/zoom
-      this.onAction()
-    }, { passive: false }) 
+    document.getElementById("touch-btn").addEventListener(
+      "touchstart",
+      (e) => {
+        e.preventDefault()
+        this.onAction()
+      },
+      { passive: false },
+    )
   }
 
   updateState(newState) {
@@ -388,16 +387,15 @@ class Game {
 
   endGame() {
     this.updateState(this.STATES.ENDED)
-    this.collapseSound.play() 
-    this.stage.shakeCamera(0.3, 1) 
+    this.stage.shakeCamera(0.3, 1.5)
 
-    const currentScore = this.blocks.length - 1;
-    this.finalScoreDisplay.innerHTML = String(currentScore); 
+    const currentScore = this.blocks.length - 1
+    this.finalScoreDisplay.innerHTML = String(currentScore)
 
     if (currentScore > this.highScore) {
-      this.highScore = currentScore;
-      localStorage.setItem("highScore", String(this.highScore)); 
-      this.highScoreDisplay.innerHTML = String(this.highScore); 
+      this.highScore = currentScore
+      localStorage.setItem("highScore", String(this.highScore))
+      this.highScoreDisplay.innerHTML = String(this.highScore)
     }
   }
 
