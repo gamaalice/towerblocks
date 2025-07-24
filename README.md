@@ -9,7 +9,7 @@ I wanted to explore how to build a simple and addictive 3D game experience using
 
 I developed a 3D stacking game where the player must place moving blocks with precision. Each mistake is visually represented with smooth animations and effects, and the challenge is to reach the highest possible score before the tower collapses.
 
-## 🛠Technologies Used
+## Technologies Used
 
 - **Vanilla JavaScript** — game logic and state management  
 - **Three.js** — 3D rendering with orthographic camera and toon materials  
@@ -35,7 +35,7 @@ I developed a 3D stacking game where the player must place moving blocks with pr
 - Managing game states and data persistence with LocalStorage  
 - Adapting controls for both desktop and mobile environments  
 
-## 🔗 How to Access
+## How to Access
 
 [Click here to play](https://gamaalice.github.io/towerblocks/)
 
